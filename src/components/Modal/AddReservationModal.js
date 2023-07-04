@@ -42,19 +42,22 @@ const AddReservationModal = ({ isOpen, onRequestClose }) => {
       className="w-2/4 h-2/4 m-auto overflow-auto p-5 custom-modal"
       ariaHideApp={false}
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col w-full gap-4 justify-center overflow-auto"
+      >
         {inputFields.map((field, index) => (
           <input
             key={index}
             {...register(field.name)}
             placeholder={field.placeholder}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-4"
           />
         ))}
         {validationError && <p className="error">{validationError}</p>}
         <button
           type="submit"
-          className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+          className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-4 mr-2 mb-2"
         >
           Soumettre
         </button>

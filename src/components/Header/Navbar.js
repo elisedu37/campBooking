@@ -20,14 +20,14 @@ const Navbar = () => {
             className="flex gap-4 items-center text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-3 mr-2 mb-2 dark:bg-green-600"
           >
             <Plus size="20" />
-            Ajouter une réservation
+            <span className="hidden sm:flex">Ajouter une réservation</span>
           </button>
           <button
             onClick={() => dispatch(clearList())}
             className="flex gap-4 items-center text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-3 mr-2 mb-2 dark:bg-green-600"
           >
             <TrashSimple size="20" />
-            Supprimer tout
+            <span className="hidden sm:flex"> Supprimer tout</span>
           </button>
         </div>
         <AddReservationModal
