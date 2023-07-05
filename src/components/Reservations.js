@@ -7,7 +7,7 @@ import Card from './Reservations/Card';
 const Reservations = ({ sort }) => {
   const count = useSelector((state) => state.reservation.length);
   const reservations = useSelector((state) => state.reservation);
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
 
   return (
     <div className="max-w-screen-xl m-auto py-24 flex flex-col gap-4">
@@ -18,7 +18,12 @@ const Reservations = ({ sort }) => {
               <p>Nombre de réservations : {count}</p>
               <div className="flex flex-wrap gap-4">
                 {reservations.map((resa) => (
-                  <Card reservation={resa} key={resa.id} />
+                  <Card
+                    reservation={resa}
+                    key={resa.id}
+                    setEditModalOpen={setEditModalOpen}
+                    isEditModalOpen={isEditModalOpen}
+                  />
                 ))}
               </div>
             </>
@@ -31,7 +36,12 @@ const Reservations = ({ sort }) => {
                 {reservations
                   .filter((resa) => resa.paid === true)
                   .map((resa) => (
-                    <Card reservation={resa} key={resa.id} />
+                    <Card
+                      reservation={resa}
+                      key={resa.id}
+                      setEditModalOpen={setEditModalOpen}
+                      isEditModalOpen={isEditModalOpen}
+                    />
                   ))}
               </div>
             </>
@@ -44,7 +54,12 @@ const Reservations = ({ sort }) => {
                 {reservations
                   .filter((resa) => resa.paid === false)
                   .map((resa) => (
-                    <Card reservation={resa} key={resa.id} />
+                    <Card
+                      reservation={resa}
+                      key={resa.id}
+                      setEditModalOpen={setEditModalOpen}
+                      isEditModalOpen={isEditModalOpen}
+                    />
                   ))}
               </div>
             </>

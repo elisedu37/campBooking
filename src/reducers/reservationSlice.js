@@ -38,7 +38,7 @@ const reservationSlice = createSlice({
     },
     paidReservation: (state, action) => {
       return state.map((item) => {
-        if (item.id === action.payload) {
+        if (item.id === action.payload.id) {
           return {
             ...item,
             paid: true,

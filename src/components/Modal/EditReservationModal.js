@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import { useDispatch } from 'react-redux';
-import { addReservation } from '../../reducers/reservationSlice';
 import { useForm } from 'react-hook-form';
 import { schemaForm } from '../../utils/schema';
-import useId from 'react-id-generator';
+import { editReservation } from '../../reducers/reservationSlice';
 
-const AddReservationModal = ({ isOpen, onRequestClose }) => {
+const EditReservationModal = ({ isOpen, onRequestClose, prevValue }) => {
   const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
   const [validationError, setValidationError] = useState(null);
@@ -14,8 +13,12 @@ const AddReservationModal = ({ isOpen, onRequestClose }) => {
   const onSubmit = async (data) => {
     try {
       await schemaForm.validate(data);
-      const id = useId();
-      dispatch(addReservation({ ...data, id }));
+      dispatch(
+        editReservation({
+          id: prevValue.id,
+          ...data,
+        })
+      );
       reset();
       onRequestClose();
     } catch (error) {
@@ -25,13 +28,41 @@ const AddReservationModal = ({ isOpen, onRequestClose }) => {
   };
 
   const inputFields = [
-    { name: 'lastName', placeholder: 'Nom' },
-    { name: 'firstName', placeholder: 'Prénom' },
-    { name: 'phone', placeholder: 'Téléphone' },
-    { name: 'email', placeholder: 'Email' },
-    { name: 'nbPeople', placeholder: 'Nombre de personnes' },
-    { name: 'duration', placeholder: 'Durée' },
-    { name: 'entryDate', placeholder: "Date d'entrée" },
+    {
+      name: 'lastName',
+      placeholder: 'Nom',
+      defaultValue: prevValue.lastName,
+    },
+    {
+      name: 'firstName',
+      placeholder: 'Prénom',
+      defaultValue: prevValue.firstName,
+    },
+    {
+      name: 'phone',
+      placeholder: 'Téléphone',
+      defaultValue: prevValue.phone,
+    },
+    {
+      name: 'email',
+      placeholder: 'Email',
+      defaultValue: prevValue.email,
+    },
+    {
+      name: 'nbPeople',
+      placeholder: 'Nombre de personnes',
+      defaultValue: prevValue.nbPeople,
+    },
+    {
+      name: 'duration',
+      placeholder: 'Durée',
+      defaultValue: prevValue.duration,
+    },
+    {
+      name: 'entryDate',
+      placeholder: "Date d'entrée",
+      defaultValue: prevValue.entryDate,
+    },
   ];
 
   return (
@@ -42,7 +73,9 @@ const AddReservationModal = ({ isOpen, onRequestClose }) => {
       className="w-2/4 h-2/4 m-auto overflow-auto p-5 custom-modal"
       ariaHideApp={false}
     >
-      <p>Ajouter une réservation</p>
+      <p>
+        Editer la réservation de {prevValue.lastName} {prevValue.firstName}
+      </p>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col w-full gap-4  overflow-auto"
@@ -51,6 +84,7 @@ const AddReservationModal = ({ isOpen, onRequestClose }) => {
           <input
             key={index}
             {...register(field.name)}
+            defaultValue={field.defaultValue}
             placeholder={field.placeholder}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-4"
           />
@@ -67,4 +101,4 @@ const AddReservationModal = ({ isOpen, onRequestClose }) => {
   );
 };
 
-export default AddReservationModal;
+export default EditReservationModal;

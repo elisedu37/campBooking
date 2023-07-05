@@ -6,7 +6,8 @@ const Banner = ({ setSort }) => {
       <div className="relative text-white container mx-auto flex gap-4 flex-col">
         <h1 className="pb-4 text-xl font-bold">
           Réalisons les rêves de nos clients : un pas de plus vers des aventures
-          inoubliables. Entrez et modifiez vos réservations maintenant !
+          inoubliables... <br />
+          Entrez et modifiez les réservations maintenant !
         </h1>
         <p>Nos filtres pratiques </p>
         <div className="flex flex-wrap">

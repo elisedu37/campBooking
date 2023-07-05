@@ -11,9 +11,9 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="w-full flex justify-between mx-auto p-4 items-center">
+    <div className="w-full flex justify-between mx-auto p-4 items-center sticky top-0 bg-gray-200 z-20">
       <React.Fragment>
-        <span>CampBooking</span>
+        <span className="title">CampBooking</span>
         <div className="flex items-center">
           <button
             onClick={() => setModalOpen(true)}
