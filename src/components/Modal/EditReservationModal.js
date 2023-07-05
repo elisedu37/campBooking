@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
-import ReactModal from 'react-modal';
+// Redux + reducers
 import { useDispatch } from 'react-redux';
+import { editReservation } from '../../reducers/reservationSlice';
+// Form + schema YUP
 import { useForm } from 'react-hook-form';
 import { schemaForm } from '../../utils/schema';
-import { editReservation } from '../../reducers/reservationSlice';
+// Packages
+import ReactModal from 'react-modal';
 
+/**
+ * Modal qui sert à l'édition d'une réservation
+ * @param {boolean} isOpen la modal est ouverte ou fermer
+ * @param {function} onRequestClose fermeture de la modal
+ * @param {object} prevValue valeur par défault
+ * @returns {JSX}
+ */
 const EditReservationModal = ({ isOpen, onRequestClose, prevValue }) => {
   const dispatch = useDispatch();
+  // Pour le formulaire
   const { register, handleSubmit, reset } = useForm();
+  // Gestion des erreurs
   const [validationError, setValidationError] = useState(null);
 
+  // Fonction exécuter à la soumission du formulaire d'ajout
   const onSubmit = async (data) => {
     try {
       await schemaForm.validate(data);
@@ -27,6 +40,7 @@ const EditReservationModal = ({ isOpen, onRequestClose, prevValue }) => {
     }
   };
 
+  // Liste des champs du formulaire
   const inputFields = [
     {
       name: 'lastName',
