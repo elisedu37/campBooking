@@ -4,9 +4,17 @@ import { useSelector } from 'react-redux';
 // Components
 import Card from './Reservations/Card';
 
+/**
+ * Composant qui comprends tout le contenu sur les reservations
+ * @param {string} sort filtre actif
+ * @returns {JSX}
+ */
 const Reservations = ({ sort }) => {
+  // nombre de réservation
   const count = useSelector((state) => state.reservation.length);
+  // Informations sur toutes les reservations
   const reservations = useSelector((state) => state.reservation);
+  // Gestion ouverture / fermeture de la modal d'édition
   const [isEditModalOpen, setEditModalOpen] = useState(false);
 
   return (

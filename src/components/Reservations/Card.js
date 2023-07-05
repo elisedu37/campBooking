@@ -1,18 +1,24 @@
 import React from 'react';
-// Redux
+// Redux + reducers
 import { useDispatch } from 'react-redux';
-// Reducers
 import {
   deleteReservation,
   paidReservation,
 } from '../../reducers/reservationSlice';
 // Icones
 import { ArrowsClockwise } from '@phosphor-icons/react';
+// Modal
 import EditReservationModal from '../Modal/EditReservationModal';
 
+/**
+ * Carte pour une réservation
+ * @param {object} reservation toutes les informations sur la réservation
+ * @param {boolean} isEditModalOpen gestion ouverture / fermeture de la modal d'édition
+ * @param {function} setEditModalOpen setter pour l'ouverture et la fermeture de la modal
+ * @returns {JSX}
+ */
 const Card = ({ reservation, setEditModalOpen, isEditModalOpen }) => {
   const dispatch = useDispatch();
-
   return (
     <div
       key={reservation.id}
