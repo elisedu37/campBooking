@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Reservations from './components/Reservations';
 
 function App() {
+  // Gestion des filtres
   const [sort, setSort] = useState('all');
   return (
     <div>
