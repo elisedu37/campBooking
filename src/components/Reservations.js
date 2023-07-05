@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // Redux
 import { useSelector } from 'react-redux';
 // Components
@@ -14,8 +14,6 @@ const Reservations = ({ sort }) => {
   const count = useSelector((state) => state.reservation.length);
   // Informations sur toutes les reservations
   const reservations = useSelector((state) => state.reservation);
-  // Gestion ouverture / fermeture de la modal d'édition
-  const [isEditModalOpen, setEditModalOpen] = useState(false);
 
   return (
     <div className="max-w-screen-xl m-auto py-24 flex flex-col gap-4">
@@ -26,12 +24,7 @@ const Reservations = ({ sort }) => {
               <p>Nombre de réservations : {count}</p>
               <div className="flex flex-wrap gap-4">
                 {reservations.map((resa) => (
-                  <Card
-                    reservation={resa}
-                    key={resa.id}
-                    setEditModalOpen={setEditModalOpen}
-                    isEditModalOpen={isEditModalOpen}
-                  />
+                  <Card reservation={resa} key={resa.id} />
                 ))}
               </div>
             </>
@@ -44,12 +37,7 @@ const Reservations = ({ sort }) => {
                 {reservations
                   .filter((resa) => resa.paid === true)
                   .map((resa) => (
-                    <Card
-                      reservation={resa}
-                      key={resa.id}
-                      setEditModalOpen={setEditModalOpen}
-                      isEditModalOpen={isEditModalOpen}
-                    />
+                    <Card reservation={resa} key={resa.id} />
                   ))}
               </div>
             </>
@@ -62,12 +50,7 @@ const Reservations = ({ sort }) => {
                 {reservations
                   .filter((resa) => resa.paid === false)
                   .map((resa) => (
-                    <Card
-                      reservation={resa}
-                      key={resa.id}
-                      setEditModalOpen={setEditModalOpen}
-                      isEditModalOpen={isEditModalOpen}
-                    />
+                    <Card reservation={resa} key={resa.id} />
                   ))}
               </div>
             </>

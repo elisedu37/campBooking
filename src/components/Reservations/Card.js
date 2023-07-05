@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // Redux + reducers
 import { useDispatch } from 'react-redux';
 import {
@@ -13,12 +13,13 @@ import EditReservationModal from '../Modal/EditReservationModal';
 /**
  * Carte pour une réservation
  * @param {object} reservation toutes les informations sur la réservation
- * @param {boolean} isEditModalOpen gestion ouverture / fermeture de la modal d'édition
- * @param {function} setEditModalOpen setter pour l'ouverture et la fermeture de la modal
  * @returns {JSX}
  */
-const Card = ({ reservation, setEditModalOpen, isEditModalOpen }) => {
+const Card = ({ reservation }) => {
   const dispatch = useDispatch();
+  // Gestion ouverture / fermeture de la modal d'édition
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+
   return (
     <div
       key={reservation.id}
