@@ -31,7 +31,7 @@ const AddReservationModal = ({ isOpen, onRequestClose }) => {
     { name: 'email', placeholder: 'Email' },
     { name: 'nbPeople', placeholder: 'Nombre de personnes' },
     { name: 'duration', placeholder: 'Durée' },
-    { name: 'entryDate', placeholder: "Date d'entrée" },
+    { name: 'entryDate', placeholder: "Date d'entrée", type: 'date' },
   ];
 
   return (
@@ -52,6 +52,7 @@ const AddReservationModal = ({ isOpen, onRequestClose }) => {
             key={index}
             {...register(field.name)}
             placeholder={field.placeholder}
+            type={field.type ?? field.type}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-4"
           />
         ))}
